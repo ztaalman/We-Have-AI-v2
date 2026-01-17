@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Scene from './components/Scene';
 import HUD from './components/HUD';
 import AboutMe from './components/AboutMe/AboutMe';
@@ -9,11 +10,15 @@ import { MusicPlayerProvider } from './components/FloatingMusicPlayer/MusicPlaye
 import ConstructionScene from './components/ConstructionScene';
 
 function App() {
-  const [view, setView] = useState('hub');
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleNavigate = (targetView) => {
-    // Removed alert, now we navigate to the view which will render ConstructionScene
-    setView(targetView);
+    if (targetView === 'hub') {
+      navigate('/');
+    } else {
+      navigate(`/${targetView}`);
+    }
   };
 
   return (
@@ -28,31 +33,26 @@ function App() {
         top: 0,
         left: 0,
       }}>
-        {view === 'hub' && (
-          <>
-            <HUD />
-            <Scene onNavigate={handleNavigate} />
-          </>
-        )}
-
-        {view === 'about' && (
-          <AboutMe onNavigate={handleNavigate} />
-        )}
-
-        {view === 'chatbot' && (
-          <Chatbot onNavigate={handleNavigate} />
-        )}
-
-        {view === 'contact' && (
-          <ContactCard onNavigate={handleNavigate} />
-        )}
-
-        {(view === 'tools' || view === 'games') && (
-          <ConstructionScene
-            onNavigate={handleNavigate}
-            title={view === 'tools' ? "TOOLS SECTION" : "GAMES ARCADE"}
-          />
-        )}
+        <Routes>
+          <Route path="/" element={
+            <>
+              <HUD />
+              <Scene onNavigate={handleNavigate} />
+            </>
+          } />
+          <Route path="/about" element={<AboutMe onNavigate={handleNavigate} />} />
+          <Route path="/chatbot" element={<Chatbot onNavigate={handleNavigate} />} />
+          <Route path="/contact" element={<ContactCard onNavigate={handleNavigate} />} />
+          <Route path="/tools" element={<ConstructionScene onNavigate={handleNavigate} title="TOOLS SECTION" />} />
+          <Route path="/games" element={<ConstructionScene onNavigate={handleNavigate} title="GAMES ARCADE" />} />
+          {/* Catch all redirect to Hub */}
+          <Route path="*" element={
+            <>
+              <HUD />
+              <Scene onNavigate={handleNavigate} />
+            </>
+          } />
+        </Routes>
 
         {/* Music Player - persists across all pages */}
         <FloatingMusicPlayer />

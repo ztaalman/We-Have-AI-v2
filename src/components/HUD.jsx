@@ -9,8 +9,8 @@ const isMobileDevice = () => {
 };
 
 export default function HUD() {
-    // Title changed to zLAB
-    const title = "zLAB";
+    // Title changed to WE HAVE AI
+    const title = "WE HAVE AI";
     const [isMobile, setIsMobile] = React.useState(false);
 
     React.useEffect(() => {
@@ -78,10 +78,10 @@ export default function HUD() {
                 left: '50%',
                 transform: 'translateX(-50%)',
                 textAlign: 'center',
-                color: '#d4af37',
+                color: '#ffd700', // Gold color
                 fontSize: isMobile ? '1.5rem' : '3rem',
                 fontWeight: 'bold',
-                textShadow: '0 0 10px #d4af37',
+                textShadow: '0 0 10px #ffd700, 0 0 20px #ffaa00', // Enhanced glow
                 letterSpacing: '5px',
                 zIndex: 100
             }}>
