@@ -132,12 +132,14 @@ export default function MedievalDoor({
                 {/* Bright text */}
                 <Text
                     position={[0, 0, 0.08]}
-                    fontSize={0.16}
+                    fontSize={0.18}
+                    maxWidth={1.3}
+                    lineHeight={1}
                     color="#ffd700"
                     anchorX="center"
                     anchorY="middle"
                     fontWeight="bold"
-                    outlineWidth={0.015}
+                    outlineWidth={0.02}
                     outlineColor="#000000"
                 >
                     {label}

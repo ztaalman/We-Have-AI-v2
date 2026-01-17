@@ -8,6 +8,8 @@ const isMobileDevice = () => {
     return false;
 };
 
+import './HUD.css';
+
 export default function HUD() {
     // Title changed to WE HAVE AI
     const title = "WE HAVE AI";
@@ -71,22 +73,7 @@ export default function HUD() {
 
     return (
         <div style={styles.container}>
-            {/* Title Top Center */}
-            <div style={{
-                position: 'absolute',
-                top: '2rem',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                textAlign: 'center',
-                color: '#ffd700', // Gold color
-                fontSize: isMobile ? '1.5rem' : '3rem',
-                fontWeight: 'bold',
-                textShadow: '0 0 10px #ffd700, 0 0 20px #ffaa00', // Enhanced glow
-                letterSpacing: '5px',
-                zIndex: 100
-            }}>
-                {title}
-            </div>
+            {/* Title removed as per user request (redundant with Stone Logo) */}
 
             {/* By Zach Taalman - moved down on mobile */}
             <div style={styles.credit}>
