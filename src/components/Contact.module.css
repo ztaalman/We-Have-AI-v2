@@ -1,0 +1,127 @@
+.contactContainer {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(10, 20, 30, 0.95);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid #00ffff;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    text-align: left;
+}
+
+.contactContainer h1 {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: #00ffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.contactContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contactInfo h2 {
+    color: #88ccff;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.contactInfo p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #ddd;
+    margin-bottom: 1rem;
+}
+
+.contactDetails {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.contactItem h3 {
+    font-size: 0.9rem;
+    color: #00ffff;
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+}
+
+.contactItem p {
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+/* Form Styles */
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.formGroup label {
+    font-size: 0.9rem;
+    color: #00ffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.formGroup input,
+.formGroup textarea {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(0, 255, 255, 0.4);
+    color: #fff;
+    padding: 0.8rem;
+    border-radius: 4px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.submitBtn {
+    margin-top: 1rem;
+    background: transparent;
+    border: 1px solid #00ffff;
+    color: #00ffff;
+    padding: 0.8rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.submitBtn:hover {
+    background: #00ffff;
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+.hidden {
+    display: none;
+}
