@@ -230,7 +230,7 @@ const ConstructionScene = ({ onNavigate, title = "UNDER CONSTRUCTION" }) => {
                     <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
                         <Text
                             position={[0, 2.5, 0]}
-                            fontSize={0.8}
+                            fontSize={0.5}
                             color="#FFEB3B"
                             anchorX="center"
                             anchorY="middle"
@@ -242,7 +242,7 @@ const ConstructionScene = ({ onNavigate, title = "UNDER CONSTRUCTION" }) => {
 
                         <Text
                             position={[0, 1.8, 0]}
-                            fontSize={0.3}
+                            fontSize={0.18}
                             color="#ffffff"
                             anchorX="center"
                             anchorY="middle"

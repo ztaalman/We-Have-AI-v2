@@ -1,6 +1,6 @@
 
 import React, { useRef, useState, useEffect, useMemo } from 'react';
-import { Stars, Sparkles } from '@react-three/drei';
+import { Stars, Sparkles, Text } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -129,6 +129,9 @@ export default function SpaceBackground({ onAsteroidClick, destroyedAsteroidId, 
       {explosions.map(exp => (
         <Explosion key={`exp-${exp.id}`} position={exp.position} scale={exp.scale} />
       ))}
+
+      {/* Secret Constellation Message */}
+      <SecretConstellation />
 
     </group>
   );
@@ -277,6 +280,54 @@ function Explosion({ position, scale = 1 }) {
         </mesh>
       ))}
     </group>
+  );
+}
+
+// Secret Constellation Component
+function SecretConstellation() {
+  const textRef = useRef();
+
+  useFrame((state) => {
+    if (textRef.current) {
+      const time = state.clock.getElapsedTime();
+      // Complex fade in/out logic
+      // Only appear occasionally (e.g., essentially invisible mostly, then pulses)
+
+      // Base sine wave for slow pulsing
+      const slowPulse = Math.sin(time * 0.2);
+
+      // Only visible when slowPulse is near peak (> 0.8)
+      let opacity = 0;
+
+      if (slowPulse > 0.8) {
+        // Add a flicker
+        opacity = (slowPulse - 0.8) * 5 * (0.8 + Math.random() * 0.2);
+      }
+
+      // Random glitchy flash
+      if (Math.random() > 0.995) {
+        opacity = Math.random() * 0.8;
+      }
+
+      textRef.current.material.opacity = opacity;
+    }
+  });
+
+  return (
+    <Text
+      ref={textRef}
+      position={[0, 15, -60]} // High up in the distance
+      fontSize={3}
+      color="#ffffff" // White stars
+      font="/fonts/MedievalSharp-Regular.ttf" // Use project font if available, or default
+      textAlign="center"
+      anchorX="center"
+      anchorY="middle"
+      maxWidth={50}
+    >
+      perpetually outside the box
+      <meshBasicMaterial attach="material" color="#aaddff" transparent opacity={0} />
+    </Text>
   );
 }
 
