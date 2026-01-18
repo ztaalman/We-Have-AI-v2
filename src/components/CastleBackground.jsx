@@ -40,7 +40,7 @@ function SecretConstellation() {
             rotation={[Math.PI / 2, 0, 0]} // Rotate to face down/viewer from ceiling
             fontSize={0.8}
             color="#ffffff" // White stars
-            font="/fonts/MedievalSharp-Regular.ttf" // Use project font if available, or default
+
             textAlign="center"
             anchorX="center"
             anchorY="middle"
