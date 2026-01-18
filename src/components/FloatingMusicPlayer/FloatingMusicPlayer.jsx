@@ -96,8 +96,32 @@ const FloatingMusicPlayer = () => {
     if (window.YT && window.YT.Player && playerRef.current && !ytPlayer.current) {
       window.onYouTubeIframeAPIReady();
     }
+
+    const handleInteraction = () => {
+      if (playerRef.current && ytPlayer.current) {
+        if (playing) { // ONLY if we intend to be playing
+          const state = ytPlayer.current.getPlayerState();
+          // If unstarted (-1) or paused (2) or cued (5), try to play
+          if (state === -1 || state === 2 || state === 5) {
+            ytPlayer.current.playVideo();
+          }
+        }
+      }
+      // Remove listeners once we've interacted
+      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('keydown', handleInteraction);
+    };
+
+    window.addEventListener('click', handleInteraction);
+    window.addEventListener('touchstart', handleInteraction);
+    window.addEventListener('keydown', handleInteraction);
+
     return () => {
-      // Don't destroy player on unmount to persist across navigation
+      // Clean up
+      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener('keydown', handleInteraction);
     };
   }, []);
 

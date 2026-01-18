@@ -1,6 +1,56 @@
 import React, { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
+import { Text } from '@react-three/drei';
 import * as THREE from 'three';
+
+// Secret Constellation Component
+function SecretConstellation() {
+    const textRef = useRef();
+
+    useFrame((state) => {
+        if (textRef.current) {
+            const time = state.clock.getElapsedTime();
+            // Complex fade in/out logic
+            // Only appear occasionally (e.g., essentially invisible mostly, then pulses)
+
+            // Base sine wave for slow pulsing
+            const slowPulse = Math.sin(time * 0.2);
+
+            // Only visible when slowPulse is near peak (> 0.8)
+            let opacity = 0;
+
+            if (slowPulse > 0.8) {
+                // Add a flicker
+                opacity = (slowPulse - 0.8) * 5 * (0.8 + Math.random() * 0.2);
+            }
+
+            // Random glitchy flash
+            if (Math.random() > 0.995) {
+                opacity = Math.random() * 0.8;
+            }
+
+            textRef.current.material.opacity = opacity;
+        }
+    });
+
+    return (
+        <Text
+            ref={textRef}
+            position={[0, 11, -5]} // High up in the ceiling
+            rotation={[Math.PI / 2, 0, 0]} // Rotate to face down/viewer from ceiling
+            fontSize={0.8}
+            color="#ffffff" // White stars
+            font="/fonts/MedievalSharp-Regular.ttf" // Use project font if available, or default
+            textAlign="center"
+            anchorX="center"
+            anchorY="middle"
+            maxWidth={10}
+        >
+            perpetually outside the box
+            <meshBasicMaterial attach="material" color="#aaddff" transparent opacity={0} />
+        </Text>
+    );
+}
 
 // Matrix-style falling code animation
 function MatrixWall({ position, size }) {
@@ -548,6 +598,7 @@ export default function CastleBackground() {
 
             {/* Ceiling - REALISTIC SPACE */}
             <SpaceCeiling position={[0, 8, -4]} size={[16, 14]} />
+            <SecretConstellation />
 
             {/* PILLARS - now BEHIND torches (further back on z) */}
             <ThickPillar position={[-5, -2, -1]} />

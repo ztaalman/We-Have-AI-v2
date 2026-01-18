@@ -125,6 +125,18 @@
     .contact-name {
         font-size: 1.8rem;
     }
+
+    .contact-details {
+        width: 100%;
+    }
+
+    .detail-row {
+        justify-content: center !important;
+    }
+
+    .detail-icon {
+        margin-right: 0.8rem;
+    }
 }
 
 .contact-title {
