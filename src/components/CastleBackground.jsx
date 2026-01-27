@@ -14,31 +14,18 @@ function SecretConstellation() {
             // Only appear occasionally (e.g., essentially invisible mostly, then pulses)
 
             // Base sine wave for slow pulsing
-            const slowPulse = Math.sin(time * 0.2);
-
-            // Only visible when slowPulse is near peak (> 0.8)
-            let opacity = 0;
-
-            if (slowPulse > 0.8) {
-                // Add a flicker
-                opacity = (slowPulse - 0.8) * 5 * (0.8 + Math.random() * 0.2);
-            }
-
-            // Random glitchy flash
-            if (Math.random() > 0.995) {
-                opacity = Math.random() * 0.8;
-            }
-
-            textRef.current.material.opacity = opacity;
+            // Simple pulsing logic - ALWAYS VISIBLE
+            const pulse = 0.3 + 0.7 * (Math.sin(time * 1.5) * 0.5 + 0.5);
+            textRef.current.material.opacity = pulse;
         }
     });
 
     return (
         <Text
             ref={textRef}
-            position={[0, 11, -5]} // High up in the ceiling
+            position={[0, 7.5, -5]} // Just below ceiling (which is at y=8)
             rotation={[Math.PI / 2, 0, 0]} // Rotate to face down/viewer from ceiling
-            fontSize={0.8}
+            fontSize={0.6}
             color="#ffffff" // White stars
 
             textAlign="center"

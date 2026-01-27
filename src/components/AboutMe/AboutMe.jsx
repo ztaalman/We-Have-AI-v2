@@ -43,48 +43,44 @@ const resumeData = {
       title: "Regional Sales Manager",
       company: "Screening Eagle Technologies",
       period: "2022-2024",
-      location: "Remote / Chicago, IL",
+      location: "Remote",
       achievements: [
-        "Expanded clientele base by 32% through organic campaigns, strengthening channel relationships, and prioritizing customer satisfaction.",
-        "Led a team that consistently exceeded, often doubling sales quotas; set ambitious, yet achievable targets for my excellence-oriented team.",
-        "Negotiated and secured advantageous agreements with key channel partners and resellers. Established KPIs leading to a 15% partner sales increase.",
+        "Exceeded blended direct software/hardware quota of $1.7m. Achieved via tech talks, lunch & learns, cloud workflow demos, and tailored proposals.",
+        "Led a channel partner team that achieved 176% of hardware quota; Established agreements and KPIs leading to a 35% partner sales increase.",
         "Spearheaded campaigns with marketing, product managers, and industry leaders – proactive trend forecasting, enhancing brand recognition.",
-        "Conducted large seminars, convention booths, and tech sales talks pertaining to our suite of interconnected cloud workflow software."
+        "Negotiated advantageous, but balanced contracts with key channel partners and resellers."
       ]
     },
     {
-      title: "Materials Quality Engineer (Model 3/Y, Tesla Energy, and Tesla Semi)",
+      title: "Materials Quality Engineer – Model 3/Y, Tesla Energy, and Tesla Semi",
       company: "Tesla, Inc.",
       period: "2018-2021",
       location: "Reno-Sparks, NV",
       achievements: [
-        "Derived operational system improvements and scrap/cost savings, applying Lean Six Sigma, resulting in a 12% YoY reduction of overhead loss.",
-        "Systematized quality control procedures that monitored incoming supply and prevented outbound defects. Recouped ~ $2.5m/yr. from this.",
-        "Developed powerful SQL dashboards and UIs to aid in tracking QC statistics on drive-unit and battery module components.",
-        "Maintained project management relationships with global cross-functional, internal and external teams to improve reliability and profit margins.",
-        "Collaborated with product management to execute strategic business plans for cost-performance optimization saving $95M in EV production."
+        "Collaborated with product management to execute strategic business plans for cost-performance optimization saving $95M in EV production.",
+        "Applying Lean Six Sigma, derived Ops and cost savings for Drive Unit AC/PM motors resulting in a 12% YoY reduction of overhead loss.",
+        "Developed QC SQL observability dashboards and UIs for battery module supply and preventing outbound defects. Recouped $2.5m/yr. from this.",
+        "Maintained project management relationships with global cross-functional, internal and external teams to improve reliability and profit margins."
       ]
     },
     {
-      title: "Materials & Process Engineer Intern (Military, Construction, Access, and Emergency Vehicles)",
+      title: "Materials & Process Engineer Intern – Military, Construction, Access, and Emergency Vehicles",
       company: "Oshkosh Corporation",
       period: "2017",
       location: "Oshkosh, WI",
       achievements: [
-        "Improved inter-organizational part quality and processes, via data analysis. Contributed to 6.8bn in 2017 revenue, 9% YoY growth.",
-        "Participated in supply-chain engineering communication with distributors to resolve discrepancies and discuss mediation.",
-        "Ensured ongoing conformance with company policy and training, as well as ITAR (military regulations) and ISO/ASTM standards."
+        "JLTV steel underbelly for IED protection. Ensured conformance with ITAR (military regulations) and ISO/ASTM standards.",
+        "Supply chain negotiation and mediation with distributors, contributing to 6.8bn in 2017 revenue, 9% YoY growth."
       ]
     },
     {
-      title: "Product R&D Intern (Concussion Prevention – NFL & Other Impact Sports)",
-      company: "Iowa State University, Start-up Cohort",
-      period: "2016-2017",
+      title: "Product R&D Intern – NFL & Other Impact Sports",
+      company: "Iowa State University, Start-up Cohort (Concussion Prevention)",
+      period: "2016 - 2017",
       location: "Ames, IA",
       achievements: [
-        "Translated technical research into marketable product features, informing design choices, and contributing to the product's competitive edge.",
-        "Leveraged academic partnerships to supplement product research, gaining access to specialized expertise and funding opportunities.",
-        "Performed competitive analysis to pinpoint market needs, leading to targeted product development and innovation in material application."
+        "Competitive headwear analysis and product development via. Granta Materials analysis, test fixture design, Labview Data Acquisition (DAQ).",
+        "Leveraged academic partnerships to supplement product research, gaining access to specialized expertise and funding opportunities."
       ]
     },
     {
