@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Canvas } from '@react-three/fiber';
 import { Html, Environment } from '@react-three/drei';
 import MechanicalArm from '../MechanicalArm';
-import profilePic from '../../assets/profile.jpg';
+import profilePic from '../../assets/contact-profile.jpg';
 import './ContactCard.css';
 import Contact from '../Contact';
 
@@ -58,7 +58,7 @@ END:VCARD`;
                     <Environment preset="city" />
 
                     <Suspense fallback={null}>
-                        <group position={[3.0, -3.5, 0]} rotation={[0, -0.6, 0]}>
+                        <group position={[5.5, -3.5, 0]} rotation={[0, -0.6, 0]}>
                             {/* Replaced Hand with Industrial Arm (Floor Mount) */}
                             <MechanicalArm position={[0, 0, 0]} rotation={[0, 0, 0]} />
 

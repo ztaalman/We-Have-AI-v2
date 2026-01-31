@@ -3,19 +3,15 @@ import { useFrame } from '@react-three/fiber';
 import { Text } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Secret Constellation Component
+// Secret Constellation Component - Stars that spell a message
 function SecretConstellation() {
     const textRef = useRef();
 
     useFrame((state) => {
         if (textRef.current) {
             const time = state.clock.getElapsedTime();
-            // Complex fade in/out logic
-            // Only appear occasionally (e.g., essentially invisible mostly, then pulses)
-
-            // Base sine wave for slow pulsing
-            // Simple pulsing logic - ALWAYS VISIBLE
-            const pulse = 0.3 + 0.7 * (Math.sin(time * 1.5) * 0.5 + 0.5);
+            // Slow twinkling star effect - fades to almost invisible
+            const pulse = 0.05 + 0.75 * (Math.sin(time * 0.5) * 0.5 + 0.5);
             textRef.current.material.opacity = pulse;
         }
     });
@@ -23,18 +19,18 @@ function SecretConstellation() {
     return (
         <Text
             ref={textRef}
-            position={[0, 7.5, -5]} // Just below ceiling (which is at y=8)
-            rotation={[Math.PI / 2, 0, 0]} // Rotate to face down/viewer from ceiling
-            fontSize={0.6}
-            color="#ffffff" // White stars
-
+            position={[0, 6.2, -4]} // Slightly lower in space area
+            rotation={[0.3, 0, 0]} // Slight tilt for better visibility
+            fontSize={0.35}
+            color="#ffffcc" // Warm star color
             textAlign="center"
             anchorX="center"
             anchorY="middle"
-            maxWidth={10}
+            maxWidth={12}
+            letterSpacing={0.15}
         >
             perpetually outside the box
-            <meshBasicMaterial attach="material" color="#aaddff" transparent opacity={0} />
+            <meshBasicMaterial attach="material" color="#ffffcc" transparent opacity={0} />
         </Text>
     );
 }

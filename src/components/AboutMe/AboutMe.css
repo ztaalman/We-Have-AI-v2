@@ -85,14 +85,14 @@
   font-weight: bold;
   color: #00ffff;
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-  /* Hexagon Mask or Border Radius? Let's go simple square with cut corners look via border */
-  clip-path: polygon(10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%, 0 10%);
+  overflow: hidden;
 }
 
 .profile-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
 }
 
 .profile-info h1 {

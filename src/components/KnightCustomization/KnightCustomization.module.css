@@ -1,0 +1,349 @@
+/* OSRS-style Knight Customization Panel */
+
+.floater {
+    position: fixed;
+    bottom: 120px;
+    right: 40px;
+    z-index: 150;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    animation: floatBounce 3s ease-in-out infinite;
+}
+
+.floaterButton {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #2a2520 0%, #1a1815 100%);
+    border: 2px solid #c9a227;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow:
+        0 0 15px rgba(201, 162, 39, 0.3),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.floaterButton:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(201, 162, 39, 0.5);
+}
+
+.floaterText {
+    font-family: 'MedievalSharp', 'Cinzel', Georgia, serif;
+    font-size: 14px;
+    color: #c9a227;
+    text-shadow:
+        0 0 10px rgba(201, 162, 39, 0.5),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+    white-space: nowrap;
+    animation: textPulse 2s ease-in-out infinite;
+}
+
+@keyframes floatBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes textPulse {
+
+    0%,
+    100% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Full Customization Panel */
+.panelOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+}
+
+.panel {
+    background: linear-gradient(180deg, #3a352e 0%, #252220 50%, #1a1815 100%);
+    border: 3px solid #5a5040;
+    border-radius: 4px;
+    box-shadow:
+        0 0 30px rgba(0, 0, 0, 0.8),
+        inset 0 1px 1px rgba(255, 255, 255, 0.05);
+    max-width: 680px;
+    width: 95%;
+    max-height: 85vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.panelHeader {
+    background: linear-gradient(180deg, #4a4540 0%, #3a3530 100%);
+    border-bottom: 2px solid #5a5040;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.panelTitle {
+    font-family: 'MedievalSharp', Georgia, serif;
+    font-size: 20px;
+    color: #c9a227;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin: 0;
+}
+
+.closeButton {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, #5a3030 0%, #3a1515 100%);
+    border: 2px solid #8a5050;
+    border-radius: 4px;
+    color: #ffaaaa;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.closeButton:hover {
+    background: linear-gradient(135deg, #8a4040 0%, #5a2020 100%);
+    box-shadow: 0 0 10px rgba(255, 100, 100, 0.3);
+}
+
+.panelContent {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+    gap: 15px;
+}
+
+/* Equipment side (left) */
+.equipmentSide {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.equipmentSlots {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
+    padding: 15px;
+    background: linear-gradient(180deg, #2a2520 0%, #1a1815 100%);
+    border: 2px solid #4a4540;
+    border-radius: 4px;
+}
+
+.equipSlot {
+    aspect-ratio: 1;
+    background: linear-gradient(180deg, #1a1815 0%, #0a0808 100%);
+    border: 2px solid #3a3530;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.equipSlot:hover {
+    border-color: #c9a227;
+    box-shadow: 0 0 10px rgba(201, 162, 39, 0.3);
+}
+
+.equipSlot.active {
+    border-color: #ffd700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+.equipSlot.empty {
+    opacity: 0.3;
+}
+
+.slotLabel {
+    position: absolute;
+    bottom: 2px;
+    font-size: 8px;
+    color: #888;
+    font-family: 'MedievalSharp', sans-serif;
+}
+
+/* Inventory side (right) */
+.inventorySide {
+    flex: 1.5;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.categoryTabs {
+    display: flex;
+    gap: 4px;
+}
+
+.categoryTab {
+    flex: 1;
+    padding: 10px 8px;
+    background: linear-gradient(180deg, #2a2520 0%, #1a1815 100%);
+    border: 2px solid #3a3530;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    color: #aaa;
+    font-family: 'MedievalSharp', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.categoryTab:hover {
+    background: linear-gradient(180deg, #3a3530 0%, #2a2520 100%);
+    color: #c9a227;
+}
+
+.categoryTab.active {
+    background: linear-gradient(180deg, #3a352e 0%, #2a2520 100%);
+    border-color: #5a5040;
+    color: #c9a227;
+    border-bottom: 2px solid #2a2520;
+    margin-bottom: -2px;
+}
+
+.inventoryGrid {
+    background: linear-gradient(180deg, #2a2520 0%, #1a1815 100%);
+    border: 2px solid #5a5040;
+    border-radius: 0 0 4px 4px;
+    padding: 12px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    min-height: 200px;
+}
+
+.inventoryItem {
+    aspect-ratio: 1;
+    background: linear-gradient(180deg, #1a1815 0%, #0a0808 100%);
+    border: 2px solid #3a3530;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 4px;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.inventoryItem:hover {
+    border-color: #c9a227;
+    box-shadow: 0 0 10px rgba(201, 162, 39, 0.3);
+    transform: scale(1.02);
+}
+
+.inventoryItem.selected {
+    border-color: #ffd700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    background: linear-gradient(180deg, #2a2520 0%, #1a1815 100%);
+}
+
+.itemIcon {
+    font-size: 22px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.itemName {
+    font-size: 8px;
+    color: #c9a227;
+    font-family: 'MedievalSharp', sans-serif;
+    text-align: center;
+    line-height: 1;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 2px;
+}
+
+/* Color swatches */
+.colorSwatch {
+    width: 100%;
+    height: 100%;
+    border-radius: 2px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.colorSwatch:hover {
+    transform: scale(1.05);
+}
+
+.colorSwatch.selected {
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+    .floater {
+        bottom: 80px;
+        right: 20px;
+    }
+
+    .floaterButton {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+
+    .floaterText {
+        font-size: 12px;
+    }
+
+    .panel {
+        max-height: 90vh;
+    }
+
+    .panelContent {
+        flex-direction: column;
+    }
+
+    .inventoryGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

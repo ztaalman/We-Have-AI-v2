@@ -8,6 +8,7 @@ import ContactCard from './components/ContactCard/ContactCard';
 import FloatingMusicPlayer from './components/FloatingMusicPlayer/FloatingMusicPlayer';
 import { MusicPlayerProvider } from './components/FloatingMusicPlayer/MusicPlayerContext';
 import ConstructionScene from './components/ConstructionScene';
+import { KnightCustomizationProvider, KnightCustomizationPanel } from './components/KnightCustomization';
 
 function App() {
   const navigate = useNavigate();
@@ -22,42 +23,46 @@ function App() {
   };
 
   return (
-    <MusicPlayerProvider>
-      <div style={{
-        width: '100vw',
-        height: '100dvh',
-        minHeight: '100vh',
-        background: '#0a0a0a',
-        overflow: 'hidden',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-      }}>
-        <Routes>
-          <Route path="/" element={
-            <>
-              <HUD />
-              <Scene onNavigate={handleNavigate} />
-            </>
-          } />
-          <Route path="/about" element={<AboutMe onNavigate={handleNavigate} />} />
-          <Route path="/chatbot" element={<Chatbot onNavigate={handleNavigate} />} />
-          <Route path="/contact" element={<ContactCard onNavigate={handleNavigate} />} />
-          <Route path="/tools" element={<ConstructionScene onNavigate={handleNavigate} title="TOOLS SECTION" />} />
-          <Route path="/games" element={<ConstructionScene onNavigate={handleNavigate} title="GAMES ARCADE" />} />
-          {/* Catch all redirect to Hub */}
-          <Route path="*" element={
-            <>
-              <HUD />
-              <Scene onNavigate={handleNavigate} />
-            </>
-          } />
-        </Routes>
+    <KnightCustomizationProvider>
+      <MusicPlayerProvider>
+        <div style={{
+          width: '100vw',
+          height: '100dvh',
+          minHeight: '100vh',
+          background: '#0a0a0a',
+          overflow: 'hidden',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+        }}>
+          <Routes>
+            <Route path="/" element={
+              <>
+                <HUD />
+                <Scene onNavigate={handleNavigate} />
+                <KnightCustomizationPanel />
+              </>
+            } />
+            <Route path="/about" element={<AboutMe onNavigate={handleNavigate} />} />
+            <Route path="/chatbot" element={<Chatbot onNavigate={handleNavigate} />} />
+            <Route path="/contact" element={<ContactCard onNavigate={handleNavigate} />} />
+            <Route path="/tools" element={<ConstructionScene onNavigate={handleNavigate} title="TOOLS SECTION" />} />
+            <Route path="/games" element={<ConstructionScene onNavigate={handleNavigate} title="GAMES ARCADE" />} />
+            {/* Catch all redirect to Hub */}
+            <Route path="*" element={
+              <>
+                <HUD />
+                <Scene onNavigate={handleNavigate} />
+                <KnightCustomizationPanel />
+              </>
+            } />
+          </Routes>
 
-        {/* Music Player - persists across all pages */}
-        <FloatingMusicPlayer />
-      </div>
-    </MusicPlayerProvider>
+          {/* Music Player - persists across all pages */}
+          <FloatingMusicPlayer />
+        </div>
+      </MusicPlayerProvider>
+    </KnightCustomizationProvider>
   );
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { KnightInventoryFloater } from './KnightCustomization';
 // Check if mobile
 const isMobileDevice = () => {
     if (typeof window !== 'undefined') {
@@ -92,6 +92,9 @@ export default function HUD() {
                     Rotate for best view
                 </div>
             )}
+
+            {/* Knight Customization Floater Button */}
+            <KnightInventoryFloater />
         </div>
     );
 }

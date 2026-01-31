@@ -1,6 +1,9 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import { useKnightCustomization } from './KnightCustomization';
+import { KnightWeapon } from './KnightCustomization/KnightWeapons';
+import { KnightHelmet, KnightTorso, KnightShoulders } from './KnightCustomization/KnightArmor';
 
 // Low-poly knight component matching the Runescape aesthetic
 export default function PolygonalKnight({
@@ -15,6 +18,23 @@ export default function PolygonalKnight({
     const currentPos = useRef(new THREE.Vector3(...initialPosition));
     const targetPos = useRef(null);
     const walkSpeed = 2.0;
+
+    // Get customization from context (with fallback for when context isn't available)
+    let customization = { color: 'silver', helmet: 'basic', armor: 'plate', weapon: 'sword' };
+    let colorPalette = { primary: '#d0d0d0', secondary: '#8a8a8a', plume: '#cc3333' };
+
+    try {
+        const context = useKnightCustomization();
+        customization = context.customization;
+        colorPalette = context.getColorPalette();
+    } catch {
+        // Context not available, use defaults
+    }
+
+    // Extract colors
+    const armorColor = colorPalette.primary;
+    const armorDark = colorPalette.secondary;
+    const plumeColor = colorPalette.plume;
 
     // Update target when prop changes
     useEffect(() => {
@@ -89,77 +109,27 @@ export default function PolygonalKnight({
         }
     });
 
-    // Reset knight when phase changes back to idle
-    const resetKnight = () => {
-        setPhase('IDLE');
-        currentPos.current.set(...initialPosition);
-        targetPos.current = null;
-        if (groupRef.current) {
-            groupRef.current.scale.setScalar(1);
-        }
-    };
-
-    // Armor color - silver/white like reference
-    const armorColor = '#d0d0d0';
-    const armorDark = '#8a8a8a';
-    const plumeColor = '#cc3333';
-
     // Walking animation offsets
     const legOffset = phase === 'WALKING' ? Math.sin(walkCycle) * 0.2 : 0;
     const armOffset = phase === 'WALKING' ? -Math.sin(walkCycle) * 0.15 : 0;
 
     return (
         <group ref={groupRef} position={initialPosition} scale={0.7}>
-            {/* ===== BODY ===== */}
-
-            {/* Torso - chest plate */}
-            <mesh position={[0, 0.8, 0]}>
-                <boxGeometry args={[0.7, 0.9, 0.4]} />
-                <meshStandardMaterial color={armorColor} roughness={0.3} metalness={0.6} flatShading />
-            </mesh>
-
-            {/* Lower torso */}
-            <mesh position={[0, 0.2, 0]}>
-                <boxGeometry args={[0.5, 0.4, 0.35]} />
-                <meshStandardMaterial color={armorDark} roughness={0.4} metalness={0.5} flatShading />
-            </mesh>
+            {/* ===== BODY / TORSO ===== */}
+            <KnightTorso type={customization.armor} armorColor={armorColor} armorDark={armorDark} />
 
             {/* ===== HEAD & HELMET ===== */}
-            <group position={[0, 1.5, 0]}>
-                {/* Helmet base */}
-                <mesh>
-                    <boxGeometry args={[0.45, 0.5, 0.45]} />
-                    <meshStandardMaterial color={armorColor} roughness={0.3} metalness={0.6} flatShading />
-                </mesh>
-
-                {/* Visor slits */}
-                <mesh position={[0, 0, 0.23]}>
-                    <boxGeometry args={[0.35, 0.08, 0.02]} />
-                    <meshStandardMaterial color="#1a1a1a" />
-                </mesh>
-                <mesh position={[0, -0.1, 0.23]}>
-                    <boxGeometry args={[0.35, 0.08, 0.02]} />
-                    <meshStandardMaterial color="#1a1a1a" />
-                </mesh>
-
-                {/* Plume */}
-                <mesh position={[0, 0.4, -0.05]}>
-                    <boxGeometry args={[0.08, 0.4, 0.3]} />
-                    <meshStandardMaterial color={plumeColor} roughness={0.8} flatShading />
-                </mesh>
-            </group>
+            <KnightHelmet
+                type={customization.helmet}
+                armorColor={armorColor}
+                armorDark={armorDark}
+                plumeColor={plumeColor}
+            />
 
             {/* ===== SHOULDERS ===== */}
-            <mesh position={[-0.5, 1.1, 0]}>
-                <sphereGeometry args={[0.2, 6, 4]} />
-                <meshStandardMaterial color={armorColor} roughness={0.3} metalness={0.6} flatShading />
-            </mesh>
-            <mesh position={[0.5, 1.1, 0]}>
-                <sphereGeometry args={[0.2, 6, 4]} />
-                <meshStandardMaterial color={armorColor} roughness={0.3} metalness={0.6} flatShading />
-            </mesh>
+            <KnightShoulders armorType={customization.armor} armorColor={armorColor} />
 
-            {/* ===== LEFT ARM (with sword) ===== */}
+            {/* ===== LEFT ARM (with weapon) ===== */}
             <group position={[-0.55, 0.7, 0]} rotation={[armOffset, 0, 0]}>
                 {/* Upper arm */}
                 <mesh position={[0, -0.2, 0]}>
@@ -177,29 +147,8 @@ export default function PolygonalKnight({
                     <meshStandardMaterial color={armorDark} roughness={0.5} metalness={0.4} flatShading />
                 </mesh>
 
-                {/* SWORD */}
-                <group position={[0, -0.75, 0.25]} rotation={[0.3, 0, 0]}>
-                    {/* Handle */}
-                    <mesh position={[0, 0, 0]}>
-                        <cylinderGeometry args={[0.03, 0.03, 0.25, 6]} />
-                        <meshStandardMaterial color="#4a3020" roughness={0.8} />
-                    </mesh>
-                    {/* Guard */}
-                    <mesh position={[0, 0.15, 0]}>
-                        <boxGeometry args={[0.25, 0.04, 0.04]} />
-                        <meshStandardMaterial color="#8b7355" metalness={0.4} roughness={0.6} />
-                    </mesh>
-                    {/* Blade */}
-                    <mesh position={[0, 0.7, 0]}>
-                        <boxGeometry args={[0.06, 1.0, 0.02]} />
-                        <meshStandardMaterial color="#c0c0c0" metalness={0.8} roughness={0.2} />
-                    </mesh>
-                    {/* Pommel */}
-                    <mesh position={[0, -0.15, 0]}>
-                        <sphereGeometry args={[0.05, 6, 4]} />
-                        <meshStandardMaterial color="#ffd700" metalness={0.7} roughness={0.3} />
-                    </mesh>
-                </group>
+                {/* WEAPON */}
+                <KnightWeapon type={customization.weapon} color="#c0c0c0" />
             </group>
 
             {/* ===== RIGHT ARM ===== */}
